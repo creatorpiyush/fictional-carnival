@@ -1,0 +1,27 @@
+* {
+  background-color: aqua;
+}
+
+.class1 {
+  font-size: 18px;
+  color: rebeccapurple;
+}
+
+.class2 {
+  border: solid black 1px;
+}
+
+#id1 {
+  font-size: 20px;
+  background-color: rebeccapurple;
+}
+
+input[disabled] {
+  background-color: antiquewhite;
+  height: 100px;
+}
+
+input[type="text"] {
+  background-color: antiquewhite;
+  font-size: 30pt;
+}

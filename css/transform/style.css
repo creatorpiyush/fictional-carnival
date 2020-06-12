@@ -1,0 +1,31 @@
+.box {
+  border: dashed black 2px;
+  background-color: bisque;
+  height: 200px;
+  width: 200px;
+  margin: 30px;
+}
+
+#box1 {
+  transform: translate(10px, 10px);
+  /* ! can be used for X-Y axis too */
+}
+
+#box2 {
+  transform: scale(1.2, 1.2);
+  /* ! can be used for X-Y axis too */
+}
+
+#box3 {
+  transform: rotate(45deg);
+  /* ! can be used for X-Y axis too */
+}
+
+#box4 {
+  transform: skew(30deg);
+  /* ! can be used for X-Y axis too */
+}
+
+#box5 {
+  transform: rotate(55deg) skewX(31deg);
+}

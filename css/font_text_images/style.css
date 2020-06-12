@@ -1,0 +1,24 @@
+* {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url("../media/picture.jpg");
+  background-size: 100%, 100%;
+  background-attachment: fixed;
+}
+
+#first {
+  letter-spacing: 5px;
+  text-align: justify;
+  font-size: 30px;
+}
+
+#second {
+  word-spacing: 10px;
+  text-decoration: underline;
+  font-style: oblique;
+}
+
+#third {
+  /* text-transform: uppercase; */
+  line-height: 200%;
+  font-variant: small-caps;
+}

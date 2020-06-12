@@ -1,0 +1,24 @@
+.container {
+  border: solid black 1px;
+  height: 400px;
+  width: 400px;
+  background-color: violet;
+  /* ! Flex Box elements */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  border: dashed black 1px;
+  height: 50px;
+  width: 50px;
+  background-color: aqua;
+  margin: 10px;
+  /* ! Flex Box elements */
+  /* order: 2; used for order of execution */
+  flex-basis: 15%;
+  align-self: auto;
+}

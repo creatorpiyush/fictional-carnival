@@ -1,0 +1,33 @@
+.container {
+  border: solid black 1px;
+  height: 400px;
+  width: 400px;
+  background-color: aqua;
+  margin: 10px;
+}
+
+.box {
+  border: dashed black 1px;
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  margin: 20px;
+}
+
+#box1 {
+  position: relative;
+  /* no movement in relative */
+}
+
+#box2 {
+  transform: translate(20px, 20px);
+  position: absolute;
+}
+
+#box3 {
+  position: fixed;
+}
+
+#box4 {
+  position: sticky;
+}
