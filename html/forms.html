@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+  </head>
+  <body>
+    <form>
+      <label>Write some text</label>
+      <input type="text" placeholder="Enter some Text" />
+
+      <br />
+      <br />
+
+      <label>Password</label>
+      <input type="password" placeholder="Enter Password" />
+
+      <br />
+      <br />
+
+      <label>Number</label>
+      <input
+        type="number"
+        min="100"
+        max="200"
+        placeholder="Enter no. b/w 100 to 200"
+      />
+
+      <br />
+      <br />
+
+      <label>Date</label>
+      <input type="date" />
+
+      <br />
+      <br />
+
+      <label>Time</label>
+      <input type="time" />
+
+      <br />
+      <br />
+
+      <label>Color</label>
+      <input type="color" />
+
+      <br />
+      <br />
+
+      <label>Upload File</label>
+      <input type="file" />
+
+      <br />
+      <br />
+
+      <label>Range</label>
+      <input type="range" />
+    </form>
+
+    <br />
+    <form>
+      <input type="checkbox" />A <input type="checkbox" />B
+      <input type="checkbox" />C <br />in above checkbox we need to click only
+      on the box it is not working for clicking on text<br />
+      <input id="a" type="checkbox" /><label for="a">A</label>
+      <input id="b" type="checkbox" /><label for="b">B</label>
+      <input id="c" type="checkbox" /><label for="c">C</label>
+
+      <br />
+      <br />
+
+      <input id="x" type="radio" name="show" /><label for="x">X</label>
+      <input id="y" type="radio" name="show" /><label for="y">Y</label>
+      <input id="z" type="radio" name="show" /><label for="z">Z</label>
+
+      <br />
+      <br />
+
+      <select>
+        <option>abcd</option>
+        <option>abcdef</option>
+        <option>abcdefgh</option>
+      </select>
+
+      <br />
+      <br />
+
+      <select multiple>
+        <option>abcd</option>
+        <option>abcdef</option>
+        <option>abcdefgh</option>
+      </select>
+    </form>
+
+    <br />
+    <br />
+
+    <form action="https://google.com/search">
+      <label>Enter Google search</label>
+      <input name="q" />
+      <input type="submit" value="Search" />
+      <input type="reset" />
+    </form>
+
+    <br />
+    <br />
+    <form>
+      <label>Default Textarea</label>
+      <textarea></textarea>
+      <br />
+      <br />
+      <label>Textarea with dimensions</label>
+      <textarea
+        cols="50"
+        rows="4"
+        placeholder="Textarea with dimensions"
+      ></textarea>
+    </form>
+  </body>
+</html>

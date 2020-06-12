@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media</title>
+  </head>
+  <body>
+    <img height="200px" width="500px" src="./media/picture.jpg" alt="Photo" />
+    <br />
+
+    <audio controls src="./media/audio.mp3"></audio>
+
+    <!-- <audio autoplay src="./media/audio.mp3"></audio> -->
+
+    <br />
+    <video src="./media/video.mp4"></video>
+    <video controls src="./media/video.mp4"></video>
+    <video autoplay src="./media/video.mp4"></video>
+    <!-- for some browsers autoplay is blocked -->
+
+    <br />
+    <video controls preload="none" src="./media/video.mp4"></video>
+    <video controls preload="metadata" src="./media/video.mp4"></video>
+    <video controls preload="auto" src="./media/video.mp4"></video>
+  </body>
+</html>
