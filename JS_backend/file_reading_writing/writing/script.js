@@ -5,7 +5,7 @@ fs.writeFile(__dirname + `/write.txt`, "Content of file", (err) => {
   console.log(`File Written`);
 });
 
-// todo: file with long content
+// todo: file with longer content
 fs.writeFile(
   __dirname + "/sample.txt",
   `Hi there is the a method for reading and writing a file in JavaScript`,
