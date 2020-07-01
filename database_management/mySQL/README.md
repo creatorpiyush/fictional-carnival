@@ -39,7 +39,7 @@ $ npm install express mysql2
 ```javascript
 const mysql = require("mysql2");
 
-const connection = mysql.createconnection({
+const connection = mysql.createConnection({
   dialect: "mysql",
   host: "localhost",
   database: "sampledb",
