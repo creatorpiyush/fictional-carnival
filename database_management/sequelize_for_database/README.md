@@ -31,7 +31,7 @@ const db = new Sequelize({
 
 const Datatype = Sequelize.DataTypes
 
-> test command for connection checking
+> test command for connection checking[not required in program just for testing whether db is connected or not]
 db.authenticate()
   .then(() => {
     console.log("Connection Worked");
