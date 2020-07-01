@@ -1,4 +1,5 @@
 const mysql = require("mysql2");
+const e = require("express");
 
 const connection = mysql.createConnection({
   dialect: "mysql",
@@ -10,10 +11,10 @@ const connection = mysql.createConnection({
 
 connection.query(
   `create Table if Not exists sampletable(
-        id integer Auto_Increment key,
-        name Varchar (50) Not NULL,
-        city Varchar (30),
-        age Integer Not NULL
+        id INTEGER Auto_Increment PRIMARY KEY,
+        name VARCHAR(50) NOT NULL,
+        age INTEGER,
+        city VARCHAR(30)
     )`,
 
   (err, result) => {
