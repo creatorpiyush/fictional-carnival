@@ -6,7 +6,6 @@ const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 
 const User = require("../models/user");
-const user = require("../models/user");
 
 route.use(bodyParser.json());
 route.use(bodyParser.urlencoded({ extended: true }));
