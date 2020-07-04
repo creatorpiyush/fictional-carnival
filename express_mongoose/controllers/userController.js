@@ -59,7 +59,7 @@ route.post(
       password: hashedPassword,
     });
 
-    // insert data inti database
+    // insert data int o database
     temp.save((err, result) => {
       if (err) return res.status(500).send("Value insert Fail...");
 
