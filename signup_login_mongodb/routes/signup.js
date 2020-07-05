@@ -5,9 +5,9 @@ const { check, validationResult } = require("express-validator");
 
 const User = require("../db/db");
 
-route.get("/", (req, res) => {
-  res.send("hi");
-});
+// route.get("/", (req, res) => {
+//   res.send("hi");
+// });
 
 route.post(
   "/YWRkdXNlcg==",
