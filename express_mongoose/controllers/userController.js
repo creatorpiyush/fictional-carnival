@@ -140,7 +140,7 @@ route.put("/update/:email", (req, res) => {
 });
 
 // delete data
-route.all("/delete/:email", (req, res) => {
+route.delete("/delete/:email", (req, res) => {
   if (req.params.email) {
     User.remove({ email: req.params.email }, (err, result) => {
       if (err) return res.status(500).send("Remove Failed...");
@@ -155,5 +155,51 @@ route.all("/delete/:email", (req, res) => {
     return res.status(500).send(`Email not provided...`);
   }
 });
+
+// login route for user
+route.post(
+  "/login",
+  [check("email").isEmail().normalizeEmail()],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).send(`Form validation error...`);
+    }
+
+    // check email
+    User.findOne({ email: req.body.email }, (err, result) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+
+      if (result) {
+        // matching password
+        const isMatch = bcrypt.compareSync(req.body.password, result.password);
+
+        // check password is match
+        if (isMatch) {
+          //password matched
+          return res.json({
+            status: true,
+            message: `User exists. Login Success...`,
+            result: result,
+          });
+        } else {
+          //password not matched
+          return res.json({
+            status: false,
+            message: `Password not matched...`,
+          });
+        }
+      } else {
+        // if email don't exist
+        return res.json({
+          status: false,
+          message: `Email not Found...`,
+        });
+      }
+    });
+  }
+);
 
 module.exports = route;
