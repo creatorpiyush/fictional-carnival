@@ -69,7 +69,7 @@ route.post(
 );
 
 // find user document
-route.get("/find", (req, res) => {
+route.all("/find", (req, res) => {
   User.find((err, result) => {
     if (err) return res.status(500).send("Find Fail...");
 
@@ -79,6 +79,64 @@ route.get("/find", (req, res) => {
       result: result,
     });
   });
+});
+
+// route.all("/find/:username", (req, res) => {
+//   User.find({ username: req.params.username }, (err, result) => {
+//     if (err) return res.status(500).send("Find Fail...");
+
+//     return res.json({
+//       status: 200,
+//       message: `Value found`,
+//       result: result,
+//     });
+//   });
+// });
+
+route.all("/find/:email", (req, res) => {
+  User.find({ email: req.params.email }, { password: 0 }, (err, result) => {
+    if (err) return res.status(500).send("Find Fail...");
+
+    return res.json({
+      status: 200,
+      message: `Value Found`,
+      result: result,
+    });
+  });
+});
+
+route.get("/findbyemail", (req, res) => {
+  User.find({ email: req.query.email }, { password: 0 }, (err, result) => {
+    if (err) return res.status(500).send("Find Fail...");
+
+    return res.json({
+      status: 200,
+      message: `Value Found`,
+      result: result,
+    });
+  });
+});
+
+// update user data
+route.all("/update/:email", (req, res) => {
+  // if email is provided
+  if (req.params.email) {
+    User.update(
+      { email: req.params.email },
+      { password: bcrypt.hashSync(req.body.password, 10) },
+      (err, result) => {
+        if (err) return res.status(500).send(`value not updated`);
+
+        return res.json({
+          status: true,
+          message: `DB Update Success...`,
+          result: result,
+        });
+      }
+    );
+  } else {
+    return res.status(400).send("Email not Provided...");
+  }
 });
 
 module.exports = route;
