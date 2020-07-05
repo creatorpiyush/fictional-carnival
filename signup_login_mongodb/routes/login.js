@@ -35,7 +35,7 @@ route.post(
         // check password is matched
         if (isMatch) {
           // password match
-          return res.status(200).send("User exists. Login Success... ");
+          return res.status(200).redirect("/");
         }
         // if password is incorrect
         else {

@@ -32,9 +32,9 @@ route.post(
 
     temp.save((err, result) => {
       if (err) {
-        return res.status(500).send("!!! Value insert Fail !!!");
+        return res.status(500).send("!!! User already Exist !!!");
       }
-      return res.status(200).send("Value Inserted ...");
+      return res.status(200).redirect("/");
     });
   }
 );
