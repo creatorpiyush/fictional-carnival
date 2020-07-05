@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const db_url = `mongodb://localhost:27017:loginsignup_db`;
+const db_url = `mongodb://localhost:27017/loginsignup_db`;
 
 // connection created
 mongoose.connect(
