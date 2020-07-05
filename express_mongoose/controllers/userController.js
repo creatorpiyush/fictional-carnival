@@ -118,7 +118,7 @@ route.get("/findbyemail", (req, res) => {
 });
 
 // update user data
-route.all("/update/:email", (req, res) => {
+route.put("/update/:email", (req, res) => {
   // if email is provided
   if (req.params.email) {
     User.update(
@@ -136,6 +136,23 @@ route.all("/update/:email", (req, res) => {
     );
   } else {
     return res.status(400).send("Email not Provided...");
+  }
+});
+
+// delete data
+route.all("/delete/:email", (req, res) => {
+  if (req.params.email) {
+    User.remove({ email: req.params.email }, (err, result) => {
+      if (err) return res.status(500).send("Remove Failed...");
+
+      return res.json({
+        status: true,
+        message: `Data Removed Success...`,
+        result: result,
+      });
+    });
+  } else {
+    return res.status(500).send(`Email not provided...`);
   }
 });
 
