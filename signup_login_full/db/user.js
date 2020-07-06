@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const db_url = `mongodb://localhost:27017/user_db`;
+const db_url = `mongodb+srv://user_login_signup:userpass@cluster0.jscha.gcp.mongodb.net/user_signup_login_db?retryWrites=true&w=majority`;
 
 mongoose.connect(
   db_url,
