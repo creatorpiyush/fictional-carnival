@@ -20,7 +20,9 @@ route.post(
     if (!err.isEmpty())
       return res
         .status(500)
-        .send({ error: `${err.errors[0].msg} for ${err.errors[0].param} ` });
+        .render("login", {
+          error: `${err.errors[0].msg} for ${err.errors[0].param} `,
+        });
 
     User.findOne({ email: req.body.email }, (err, result) => {
       if (err) return res.status(422).render("login", { error: err });
