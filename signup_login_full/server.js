@@ -2,6 +2,7 @@ const express = require("express");
 
 const signupRoute = require("./routes/signup");
 const loginRoute = require("./routes/login");
+const updateRoute = require("./routes/update");
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.get("/", (req, res) => {
 app.use("/YXBp/c2lnbnVw", signupRoute);
 
 app.use("/YXBp/bG9naW4", loginRoute);
+
+app.use("/YXBp/dXBkYXRl", updateRoute);
 
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`);
