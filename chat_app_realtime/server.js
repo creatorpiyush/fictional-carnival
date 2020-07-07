@@ -17,7 +17,7 @@ io.on("connection", (socket) => {
 
   socket.on("msg_send", (data) => {
     // console.log("Message Received : ", data.msg);
-    socket.emit("msg_rcvd", data);
+    io.emit("msg_rcvd", data);
   });
 });
 
