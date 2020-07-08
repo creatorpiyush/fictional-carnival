@@ -21,6 +21,10 @@ $("#btnSendMsg").click(() => {
   });
 });
 
+socket.on("msg_rcvd", (data) => {
+  $("#ulMsgList").append($(`<li>`).text(data.msg));
+});
+
 // const btnSend = document.getElementById("btnSend");
 // const inpNewMsg = document.getElementById("inpMsg");
 // const ulMsgList = document.getElementById("ulMsgList");

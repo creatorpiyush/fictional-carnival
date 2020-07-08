@@ -22,7 +22,10 @@ io.on("connection", (socket) => {
 
   socket.on("msg_send", (data) => {
     if (data.to) {
-    } else socket.broadcast.emit("msg_rcvd", data);
+      io.to(data.to).emit("msg_rcvd", data);
+    } else {
+      socket.broadcast.emit("msg_rcvd", data);
+    }
   });
 
   // socket.on("msg_send", (data) => {
