@@ -15,10 +15,20 @@ app.use("/", express.static(__dirname + "/public"));
 io.on("connection", (socket) => {
   console.log(`Socket id:`, socket.id);
 
-  socket.on("msg_send", (data) => {
-    // console.log("Message Received : ", data.msg);
-    socket.broadcast.emit("msg_rcvd", data);
+  socket.on("login", (data) => {
+    socket.join(data.username);
+    socket.emit("logged_in", data);
   });
+
+  socket.on("msg_send", (data) => {
+    if (data.to) {
+    } else socket.broadcast.emit("msg_rcvd", data);
+  });
+
+  // socket.on("msg_send", (data) => {
+  //   // console.log("Message Received : ", data.msg);
+  //   socket.broadcast.emit("msg_rcvd", data);
+  // });
 });
 
 server.listen(port, () => {
