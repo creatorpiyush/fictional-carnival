@@ -29,7 +29,6 @@ io.on("connection", (socket) => {
   };
 
   socket.on("login", (data) => {
-    data.from = socketMap[socket.id];
     if (users[data.username]) {
       if (users[data.username] == data.password) {
         // socket.join(data.username);
@@ -49,6 +48,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("msg_send", (data) => {
+    data.from = socketMap[socket.id];
+
     if (data.to) {
       io.to(data.to).emit("msg_rcvd", data);
     } else {
