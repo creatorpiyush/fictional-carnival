@@ -6,12 +6,17 @@ $("#chatBox").hide();
 $("#btnStart").click(() => {
   socket.emit("login", {
     username: $("#inpUsername").val(),
+    password: $("#inpPass").val(),
   });
 });
 
 socket.on("logged_in", (data) => {
   $("#loginBox").hide();
   $("#chatBox").show();
+});
+
+socket.on(`login_failed`, () => {
+  window.alert(`Username or Password Incorrect`);
 });
 
 $("#btnSendMsg").click(() => {

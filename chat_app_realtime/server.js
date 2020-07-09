@@ -12,12 +12,38 @@ const port = process.env.PORT || 4444;
 
 app.use("/", express.static(__dirname + "/public"));
 
+let users = {
+  piyush: "piyush@99",
+};
+
+let socketMap = {};
+
 io.on("connection", (socket) => {
   console.log(`Socket id:`, socket.id);
 
+  const login = (s, u) => {
+    s.join(u);
+    s.emit("logged_in");
+  };
+
   socket.on("login", (data) => {
-    socket.join(data.username);
-    socket.emit("logged_in", data);
+    if (users[data.username]) {
+      if (users[data.username] == data.password) {
+        // socket.join(data.username);
+        // socket.emit("logged_in", data);
+
+        login(socket, data.username);
+      } else {
+        socket.emit(`login_failed`);
+      }
+    } else {
+      users[data.username] = data.password;
+      // socket.join(data.username);
+      // socket.emit("logged_in", data);
+
+      login(socket, data.username);
+    }
+    console.log(users);
   });
 
   socket.on("msg_send", (data) => {
