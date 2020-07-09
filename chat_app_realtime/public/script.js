@@ -27,7 +27,7 @@ $("#btnSendMsg").click(() => {
 });
 
 socket.on("msg_rcvd", (data) => {
-  $("#ulMsgList").append($(`<li>`).text(data.msg));
+  $("#ulMsgList").append($(`<li>`).text(`[${data.from}]: ${data.msg}`));
 });
 
 // const btnSend = document.getElementById("btnSend");

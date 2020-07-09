@@ -24,9 +24,12 @@ io.on("connection", (socket) => {
   const login = (s, u) => {
     s.join(u);
     s.emit("logged_in");
+    socketMap[s.id] = u;
+    console.log(socketMap);
   };
 
   socket.on("login", (data) => {
+    data.from = socketMap[socket.id];
     if (users[data.username]) {
       if (users[data.username] == data.password) {
         // socket.join(data.username);
@@ -43,7 +46,6 @@ io.on("connection", (socket) => {
 
       login(socket, data.username);
     }
-    console.log(users);
   });
 
   socket.on("msg_send", (data) => {
