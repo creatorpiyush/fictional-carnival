@@ -40,6 +40,9 @@ route.post(
         if (isMatch) {
           // session connected to user
           req.session.userId = result.id;
+          req.session.email = result.email;
+          req.session.username = result.username;
+          req.session.createdOn = result.createdOn;
           console.log(req.session.userId);
 
           return res.status(201).redirect("/YXBp/cHJvZmlsZQ==");
