@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Signup</title>
 </head>
 
 <body>
 
-    <h1>Login</h1>
+    <div>{{error}}</div>
+    <h1>Signup</h1>
 
-    <form action="/user/login/route/login" method="POST">
+    <form action="/user/signup/route/signup" method="POST">
         <input name="email">
-        {{!-- <input name="username"> --}}
+        <input name="username">
         <input type="password" name="password">
-        {{!-- <input type="password" name="confirmpassword"> --}}
+        <input type="password" name="confirmpassword">
         <input type="submit">
     </form>
 
