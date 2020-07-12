@@ -1,24 +1,9 @@
 const route = require("express").Router();
 const { check, validationResult } = require("express-validator");
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
-const db_url = `mongodb://localhost:27017/oauth_db`;
-
-module.exports = mongoose.connect(
-  db_url,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  (err, info) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("DB connected...");
-      //   console.log(info);
-    }
-  }
-);
+const User = require("../db");
 
 // auth
 route.get("/", (req, res) => {
@@ -40,20 +25,30 @@ route.post(
         error: `${err.errors[0].msg} for ${err.errors[0].param}`,
       });
     }
-
-    // const username = req.body.username;
-    // const email = req.body.email;
-
-    // console.log(username + email);
-
     if (req.body.password != req.body.confirmpassword) {
       return res.render("signup", {
         error: `Password not matched`,
-        // username: req.body.username,
-        // email: req.body.email,
+        username: req.body.username,
+        email: req.body.email,
       });
     }
-    res.render("login");
+
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+
+    const temp = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: hashedPassword,
+    });
+
+    temp.save((err, result) => {
+      if (err) {
+        return res.status(500).render("signup", { error: err });
+      }
+      return res.status(200).render("login");
+    });
+
+    // res.render("login");
   }
 );
 
