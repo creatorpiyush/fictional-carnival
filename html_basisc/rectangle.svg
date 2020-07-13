@@ -1,0 +1,12 @@
+<svg width="500px" height="500px" xmlns="http://www.w3.org/2000/svg">
+
+    <rect width="200" height="150" fill="lightcoral" />
+
+    <rect width="300" height="200" x="20" y="20" fill="transparent" stroke="blue" stroke-width="3px" />
+
+    <rect width="400" height="400" x="10" y="10" fill="transparent" stroke="green" stroke-width="3px" />
+
+    <rect width="300" height="300" x="30" y="30" fill="transparent" stroke="red" stroke-width="5px" rx="25" ry="25" />
+
+
+</svg>
