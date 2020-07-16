@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+
+<body>
+
+    <div>{{error}}</div>
+
+    <form action="/api/route/signup/newuser" method="POST">
+        <input type="text" name="username" placeholder="Create a Username.."><br>
+        <div>{{usernameerror}}</div>
+        <input type="email" name="email" placeholder="Enter Your Email.."><br>
+        <div>{{emailiderror}}</div>
+        <input type="password" name="password" placeholder="Create a Password.."><br>
+        <div>{{passworderror}}</div>
+        <input type="submit" value="Signup">
+    </form>
+
+
+</body>
+
+</html>

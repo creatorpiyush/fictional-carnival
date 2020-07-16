@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div>{{error}}</div>
+
+    <form action="/api/route/login/currentuserlogin" method="POST">
+        <div style="font-size: 27px; color: red;">
+            {{usernotfounderror}}
+            {{!-- <span style="font-size: 27px;"> Not a User? <a href="/api/route/signup"><input type="button"
+                        style="height: 33px; font-size: 22px;" value="Signup"></a></span> --}}
+        </div>
+
+        <input type="email" name="email" placeholder="Enter Your Email.."><br>
+        <div>{{emailerror}}</div>
+        <input type="password" name="password" placeholder="Create a Password.."><br>
+        <div>{{passworderror}}
+            <a href="/api/route/forgetpassword"><span style="font-size: 15px;">Forget Password<span></a>?
+        </div>
+        <input type="submit" value="Login">
+        <a href="/api/route/signup/"><input type="button" value="Signup"></a>
+
+    </form>
+
+</body>
+
+</html>
