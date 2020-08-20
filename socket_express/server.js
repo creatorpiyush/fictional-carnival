@@ -9,6 +9,8 @@ const io = socketio(server);
 
 const port = process.env.PORT || 4444;
 
+app.set("view engine", "hbs");
+
 app.use("/", express.static(__dirname + "/public"));
 
 io.on(`connection`, (socket) => {
