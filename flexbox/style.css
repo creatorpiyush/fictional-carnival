@@ -1,0 +1,15 @@
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    /* * flex-wrap is the property that is used 
+    * to wrap the flex items automatically */
+    flex-wrap: wrap;
+}
+
+ul li {
+    padding: 2rem;
+    margin: 1rem;
+    background-color: red;
+    border-radius: 2px;
+}
