@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- * using smtpjs : go to setting and then go to SMTP  -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        Email.send({
+            SecureToken: "2246e739-71df-47b9-b75e-da102723732f",
+            // Host: "smtp.elasticemail.com",
+            // Username: "piyushanand.1221@gmail.com",
+            // Password: "26DD8FBDBBD77672E2F9773F8B32A68F785C",
+            To: "srishtiananand29@gmail.com",
+            From: "piyushanand.1221@gmail.com",
+            Subject: "This is the subject",
+            Body: "And this is the body"
+        }).then(
+            message => alert(message)
+        );
+    </script>
+    <!-- ! smtpjs end -->
+
+</body>
+
+</html>
