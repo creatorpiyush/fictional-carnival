@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Rooms</title>
+</head>
+
+<body>
+
+    <form action="/api/createroom" method="post">
+        <input type="text" name="roomname" id="">
+        <input type="email" name="adminemail">
+        <input type="submit" value="Create">
+        <p id="demo"></p>
+
+    </form>
+
+
+    <script>
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position.coords.latitude);
+        });
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position.coords.longitude);
+        });
+
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+
+            console.log(position.coords.longitude);
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+    </script>
+
+</body>
+
+</html>

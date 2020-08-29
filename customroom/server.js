@@ -1,27 +1,28 @@
 const express = require("express");
-const http = require("http");
-const socketio = require("socket.io");
-
 const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
-const { v4: uuidV4 } = require("uuid");
+
+// const socketio = require("socket.io");
+
+const indexroute = require("./routes/indexurldb");
 
 const port = process.env.PORT || 5555;
 
-let ids = [];
+// * front-end linking and post handling
+app.set("view engine", "hbs");
+app.set("views", "./public/components");
+app.use("/", express.static(__dirname + "/public"));
+app.use(express.urlencoded({ urlencoded: true }));
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  id = uuidV4();
-  ids = ids.concat(`${id}`);
-  res.redirect(`/${id}`);
-});
+// let ids = [];
 
-app.get("/:roomurl", (req, res) => {
-  res.send(`${req.params.roomurl}`);
-});
+app.use("/", indexroute);
 
-console.log(ids);
+// app.get("/:roomurl", (req, res) => {
+//   res.send(`${req.params.roomurl}`);
+// });
+
+// console.log(ids);
 
 app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`);

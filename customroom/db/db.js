@@ -14,18 +14,27 @@ mongoose.connect(
     if (err) console.log(err);
     else {
       console.log(`DB connect Success...`);
-      console.log(info);
+      //   console.log(info);
     }
   }
 );
 
 const urlschema = mongoose.Schema({
-  url: {
+  roomurl: {
     type: String,
     require: true,
     unique: true,
   },
+
+  adminemail: {
+    type: String,
+    require: true,
+  },
+  roomname: {
+    type: String,
+    require: true,
+  },
 });
 
-mongoose.model("url", urlschema);
-module.exports = mongoose.model("url");
+mongoose.model("admin", urlschema);
+module.exports = mongoose.model("admin");
