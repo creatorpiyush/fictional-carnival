@@ -14,8 +14,6 @@ app.use("/", express.static(__dirname + "/public"));
 app.use(express.urlencoded({ urlencoded: true }));
 app.use(express.json());
 
-// let ids = [];
-
 app.use("/", indexroute);
 
 // app.get("/:roomurl", (req, res) => {

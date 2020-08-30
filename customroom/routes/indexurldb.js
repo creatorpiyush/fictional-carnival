@@ -39,6 +39,10 @@ route.post(
   }
 );
 
+route.get("/:room", (req, res) => {
+  res.send(req.params.room);
+});
+
 //   const temp = new url({
 //     url: id,
 //   });
