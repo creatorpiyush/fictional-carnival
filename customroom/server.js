@@ -1,5 +1,8 @@
 const express = require("express");
+const http = require("http");
+
 const app = express();
+const server = http.createServer(app);
 
 // const socketio = require("socket.io");
 
@@ -22,6 +25,6 @@ app.use("/", indexroute);
 
 // console.log(ids);
 
-app.listen(port, () => {
-  console.log(`server started at http://localhost:${port}`);
+server.listen(port, () => {
+  console.log(`Server started at http://localhost:${port}`);
 });
