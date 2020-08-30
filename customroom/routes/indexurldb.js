@@ -40,7 +40,8 @@ route.post(
 );
 
 route.get("/:room", (req, res) => {
-  res.send(req.params.room);
+  // res.send(req.params.room);
+  res.render("roompage", { roomid: req.params.room });
 });
 
 //   const temp = new url({
