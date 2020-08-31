@@ -19,6 +19,7 @@
     "express-validator": "^6.6.1",
     "hbs": "^4.1.1",
     "mongoose": "^5.10.2",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
