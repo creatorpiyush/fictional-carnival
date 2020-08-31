@@ -17,7 +17,9 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       // * passport callback function
       //   console.log("passport callback function fired");
-      //   console.log(profile);
+      console.log(profile);
+      //   console.log(profile.emails);
+
       //   console.log(profile.id);
 
       //   todo: check if user already exists
