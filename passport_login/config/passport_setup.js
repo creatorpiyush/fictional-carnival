@@ -12,8 +12,11 @@ passport.use(
       clientID: google.clientID,
       clientSecret: google.clientSecret,
     },
-    () => {
+    (accessToken, refreshToken, profile, done) => {
       // * passport callback function
+
+      console.log("passport callback function fired");
+      console.log(profile);
     }
   )
 );
