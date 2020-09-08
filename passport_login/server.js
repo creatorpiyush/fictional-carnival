@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const authroute = require("./routes/auth_route");
+const profileroute = require("./routes/profile_route");
+
 const passportSetup = require("./config/passport_setup");
 const keys = require("./config/keys");
 
@@ -8,8 +11,6 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 
 const app = express();
-
-const authroute = require("./routes/auth_route");
 
 // * view engine
 app.set("view engine", "hbs");
@@ -22,7 +23,6 @@ app.use(
 );
 
 //  initalize passport
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -44,6 +44,7 @@ mongoose.connect(
 );
 
 app.use("/auth", authroute);
+app.use("/profile", profileroute);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
