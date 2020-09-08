@@ -6,6 +6,7 @@ require("./routes/passport_setup");
 
 // * routes
 const goodroute = require("./routes/good");
+const googleoauth = require("./routes/google_route");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -39,20 +40,7 @@ app.get("/failed", (req, res) => res.send("You Failed to log in!"));
 app.use("/good", isLoggedIn, goodroute); // * isLoggedIn is for sending user data
 
 // * passport oauth for google => can also be route
-app.get(
-  "/auth/google",
-  passport.authenticate("google", {
-    scope: ["profile", "email"],
-  })
-);
-
-app.get(
-  "/auth/google/redirect",
-  passport.authenticate("google", { failureRedirect: "/failed" }),
-  function (req, res) {
-    res.redirect("/good");
-  }
-);
+app.use("/auth/google", googleoauth);
 
 app.get("/logout", (req, res) => {
   req.session = null;
