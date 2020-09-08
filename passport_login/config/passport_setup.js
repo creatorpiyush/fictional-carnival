@@ -6,6 +6,16 @@ const { google } = require("./keys");
 
 const User = require("../models/user_models");
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
+
 passport.use(
   new GoogleStrategy(
     {
@@ -27,6 +37,7 @@ passport.use(
         if (currentUser) {
           //! already have user
           console.log("User is:", currentUser);
+          done(null, currentUser);
         } else {
           // * create user in db
           new User({
@@ -36,6 +47,7 @@ passport.use(
             .save()
             .then((newUser) => {
               console.log("new user created" + newUser);
+              done(null, newUser);
             });
         }
       });
