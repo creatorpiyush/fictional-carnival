@@ -1,22 +1,16 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
-const bodyParser = require("body-parser");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
-const { response } = require("express");
 require("./routes/passport_setup");
 
+// * routes
 const goodroute = require("./routes/good");
 
-app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
-app.use(bodyParser.json());
-
+// * cookieSession created
 app.use(
   cookieSession({
     name: "passport",
@@ -32,6 +26,8 @@ const isLoggedIn = (req, res, next) => {
   }
 };
 
+// cookieSession ends
+
 // Initializes passport and passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
@@ -40,8 +36,9 @@ app.get("/", (req, res) => res.send("not logged in"));
 
 app.get("/failed", (req, res) => res.send("You Failed to log in!"));
 
-app.use("/good", isLoggedIn, goodroute);
+app.use("/good", isLoggedIn, goodroute); // * isLoggedIn is for sending user data
 
+// * passport oauth for google => can also be route
 app.get(
   "/auth/google",
   passport.authenticate("google", {
@@ -62,6 +59,8 @@ app.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
+
+//* passport ends
 
 const port = process.env.PORT || 5000;
 
