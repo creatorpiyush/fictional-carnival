@@ -22,6 +22,7 @@ const userSchema = mongoose.Schema({
   username: String,
   googleid: String,
   email: String,
+  githubid: String,
 });
 
 const User = mongoose.model("user", userSchema);

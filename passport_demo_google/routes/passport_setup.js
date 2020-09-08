@@ -47,3 +47,49 @@ passport.use(
     }
   )
 );
+
+// * github
+const githubStrategy = require("passport-github2").Strategy;
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
+
+passport.use(
+  new githubStrategy(
+    {
+      clientID: keys.passportgithub.clientID,
+      clientSecret: keys.passportgithub.clientSecret,
+      callbackURL: "/auth/github/redirect",
+    },
+    function (accessToken, refreshToken, profile, done) {
+      console.log(profile);
+
+      User.findOne({ githubid: profile.id }).then((currentUser) => {
+        if (currentUser) {
+          //! already have user
+          console.log("User is:", currentUser);
+          done(null, currentUser);
+        } else {
+          // * create user in db
+          new User({
+            username: profile.displayName,
+            githubid: profile.id,
+            email: profile.emails[0].value,
+          })
+            .save()
+            .then((newUser) => {
+              console.log("new user created" + newUser);
+              done(null, newUser);
+            });
+        }
+      });
+    }
+  )
+);
