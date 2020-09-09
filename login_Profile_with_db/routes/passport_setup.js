@@ -34,16 +34,17 @@ passport.use(
           done(null, currentUser);
         } else {
           // * create new User
-          new User({
+          const temp = new User({
             username: profile.displayName,
             googleid: profile.id,
             email: profile.emails[0].value,
-          })
-            .save()
-            .then((newUser) => {
-              console.log(`new User Created : `, newUser);
-              done(null, newUser);
-            });
+          });
+          temp.save((err, result) => {
+            if (err) {
+              return done(`!!! Account already exists try normal login !!!`);
+            }
+            done(null, newUser);
+          });
         }
       });
     }

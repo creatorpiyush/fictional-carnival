@@ -8,10 +8,9 @@ route.get(
 
 route.get(
   "/redirect",
-  passport.authenticate("google", { failureRedirect: "/signup" }),
+  passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
     res.redirect("/");
   }
 );
-
 module.exports = route;
