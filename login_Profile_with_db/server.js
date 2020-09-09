@@ -12,6 +12,9 @@ const googleoauth = require("./routes/google_auth");
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // * session
 app.use(
   session({

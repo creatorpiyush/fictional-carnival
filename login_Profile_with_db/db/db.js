@@ -21,7 +21,7 @@ mongoose.connect(
 const userSchema = mongoose.Schema({
   username: String,
   googleid: String,
-  email: String,
+  email: { type: String, unique: true },
   password: String,
 });
 
