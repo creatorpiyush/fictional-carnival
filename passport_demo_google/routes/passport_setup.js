@@ -118,7 +118,7 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, done) {
       console.log(profile);
-      return done(null, profile);
+      // return done(null, profile);
 
       User.findOne({ facebookid: profile.id }).then((currentUser) => {
         if (currentUser) {
