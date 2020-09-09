@@ -20,13 +20,13 @@ app.use(
   })
 );
 
-const isLoggedIn = (req, res, next) => {
-  if (req.user) {
-    next();
-  } else {
-    res.status(401).redirect("/login");
-  }
-};
+// const isLoggedIn = (req, res, next) => {
+//   if (req.user) {
+//     next();
+//   } else {
+//     res.status(401).redirect("/login");
+//   }
+// };
 
 app.use(passport.initialize());
 app.use(passport.session());
