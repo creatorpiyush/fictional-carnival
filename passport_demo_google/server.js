@@ -8,6 +8,8 @@ require("./routes/passport_setup");
 const goodroute = require("./routes/good");
 const googleoauth = require("./routes/google_route");
 const githuboauth = require("./routes/github_route");
+const facebookoauth = require("./routes/facebook_route");
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -44,6 +46,9 @@ app.use("/good", isLoggedIn, goodroute); // * isLoggedIn is for sending user dat
 app.use("/auth/google", googleoauth);
 
 app.use("/auth/github", githuboauth);
+
+app.use("/auth/facebook", facebookoauth);
+
 
 app.get("/logout", (req, res) => {
   req.session = null;
