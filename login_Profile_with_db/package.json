@@ -1,0 +1,22 @@
+{
+  "name": "login_profile_with_db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "hbs": "^4.1.1",
+    "mongoose": "^5.10.3",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0"
+  }
+}
