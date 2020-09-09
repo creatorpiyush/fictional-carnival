@@ -98,15 +98,15 @@ passport.use(
 
 const facebookStrategy = require("passport-facebook").Strategy;
 
-// passport.serializeUser((user, done) => {
-//   done(null, user.id);
-// });
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
-// passport.deserializeUser((id, done) => {
-//   User.findById(id).then((user) => {
-//     done(null, user);
-//   });
-// });
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
 
 passport.use(
   new facebookStrategy(
