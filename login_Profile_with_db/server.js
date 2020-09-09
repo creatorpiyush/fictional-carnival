@@ -7,6 +7,7 @@ require("./routes/passport_setup");
 const indexroute = require("./routes/index");
 const signuproute = require("./routes/signup");
 const loginroute = require("./routes/login");
+const logoutroute = require("./routes/logout");
 const googleoauth = require("./routes/google_auth");
 
 const app = express();
@@ -19,14 +20,6 @@ app.use(
     secret: ["key1", "key2"],
   })
 );
-
-// const isLoggedIn = (req, res, next) => {
-//   if (req.user) {
-//     next();
-//   } else {
-//     res.status(401).redirect("/login");
-//   }
-// };
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -41,6 +34,8 @@ app.use("/login", loginroute);
 app.use("/signup", signuproute);
 
 app.use("/auth/google", googleoauth);
+
+app.use("/logout", logoutroute);
 
 const port = process.env.PORT || 5000;
 
