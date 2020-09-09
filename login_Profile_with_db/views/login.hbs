@@ -9,6 +9,19 @@
 
 <body>
 
+    {{error}}
+
+    <form action="/login" method="post">
+        <input type="text" name="email" id="email">
+        <label for="email">Email</label>
+
+        <input type="password" name="password" id="password">
+        <label for="password">Password</label>
+
+        <input type="submit" value="Submit">
+
+    </form>
+
     <a href="http://localhost:5000/auth/google">Google+</a>
 
 </body>

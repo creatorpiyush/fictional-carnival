@@ -1,5 +1,7 @@
 const route = require("express").Router();
 
+const bcrypt = require("bcryptjs");
+
 const User = require("../db/db");
 
 route.get("/", (req, res) => {
@@ -7,20 +9,22 @@ route.get("/", (req, res) => {
 });
 
 route.post("/", (req, res) => {
-  User.findOne(
-    { email: req.body.email }.then((currentUser) => {
-      if (!currentUser) {
-        return res.status(404).render("login", { error: req.body.email });
-      }
+  User.findOne({ email: req.body.email }).then((currentUser) => {
+    if (!currentUser) {
+      return res.status(404).render("login", { error: req.body.email });
+    }
 
-      if (User.password !== req.body.password) {
-        return res.status(404).render("login", { error: "Incorrect Password" });
-      }
+    const ismatch = bcrypt.compareSync(req.body.password, currentUser.password);
 
-      req.session.userId = User.id;
-      res.redirect("/");
-    })
-  );
+    // console.log(ismatch);
+    if (!ismatch) {
+      return res.status(404).render("login", { error: "Incorrect Password" });
+    }
+
+    req.session.userId = currentUser.id;
+    // console.log(req.session.userId);
+    return res.redirect("/");
+  });
 });
 
 module.exports = route;

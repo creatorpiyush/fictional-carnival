@@ -1,7 +1,8 @@
 const route = require("express").Router();
 
 route.get("/", (req, res) => {
-  req.session = null;
+  // res.send(req.session.userId)
+  req.session.userId = null;
   req.logout();
   res.redirect("/login");
 });

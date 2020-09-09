@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../db/db");
 
 route.get("/", (req, res) => {
-  res.send("Signup");
+  res.render("signup");
 });
 
 route.post("/", (req, res) => {
