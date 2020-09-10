@@ -4,15 +4,18 @@ const app = express();
 
 const flash = require("express-flash");
 const session = require("express-session");
+const methodOverride = require("method-override");
 
 // * routes
 const indexroute = require("./routes/index");
 const signuproute = require("./routes/signup");
 const loginroute = require("./routes/login");
+const logoutroute = require("./routes/logout");
 const { passport } = require("./routes/passport_config");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride("_method"));
 
 app.set("view engine", "hbs");
 
@@ -33,6 +36,8 @@ app.use("/", indexroute);
 app.use("/signup", signuproute);
 
 app.use("/login", loginroute);
+
+app.use("/logout", logoutroute);
 
 const port = process.env.PORT || 5000;
 
