@@ -6,6 +6,7 @@ const flash = require("express-flash");
 const session = require("express-session");
 
 // * routes
+const indexroute = require("./routes/index");
 const signuproute = require("./routes/signup");
 const loginroute = require("./routes/login");
 const { passport } = require("./routes/passport_config");
@@ -27,9 +28,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/", indexroute);
 
 app.use("/signup", signuproute);
 
