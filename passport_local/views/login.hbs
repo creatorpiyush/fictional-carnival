@@ -9,11 +9,14 @@
 
 <body>
 
+    {{#if messages.error}}
+    {{messages.error}}
+    {{/if}}
+
+    <button> <a href="/auth/google">Google+</a></button>
+
     <form action="/login" method="POST">
 
-        {{#if messages.error}}
-        {{messages.error}}
-        {{/if}}
         <div>
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
