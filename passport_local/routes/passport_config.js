@@ -1,7 +1,11 @@
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
+
 const User = require("../db/db");
+const keys = require("../keys/keys");
+
+// * passport-local
+const LocalStrategy = require("passport-local").Strategy;
 
 passport.use(
   new LocalStrategy(
@@ -44,5 +48,56 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
+
+// *
+//*
+
+// * passport-google
+
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: keys.googlepassport.clientId,
+      clientSecret: keys.googlepassport.clientSecret,
+      callbackURL: "/auth/google/redirect",
+    },
+    (accessToken, refreshToken, profile, done) => {
+      // console.log(profile);
+
+      User.findOne({ googleid: profile.id }).then((currentUser) => {
+        if (currentUser) {
+          // * already a User
+          // console.log(`User is : `, currentUser);
+          done(null, currentUser);
+        } else {
+          // * create new User
+          const temp = new User({
+            username: profile.displayName,
+            googleid: profile.id,
+            email: profile.emails[0].value,
+          });
+          temp.save((err, result) => {
+            if (err) {
+              return done(`!!! Account already exists try normal login !!!`);
+            }
+            done(null, result);
+          });
+        }
+      });
+    }
+  )
+);
 
 module.exports = { passport };

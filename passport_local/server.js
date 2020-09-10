@@ -11,6 +11,7 @@ const indexroute = require("./routes/index");
 const signuproute = require("./routes/signup");
 const loginroute = require("./routes/login");
 const logoutroute = require("./routes/logout");
+const googleoauthroute = require("./routes/google_auth");
 const { passport } = require("./routes/passport_config");
 
 app.use(express.urlencoded({ extended: true }));
@@ -38,6 +39,8 @@ app.use("/signup", signuproute);
 app.use("/login", loginroute);
 
 app.use("/logout", logoutroute);
+
+app.use("/auth/google", googleoauthroute);
 
 const port = process.env.PORT || 5000;
 
