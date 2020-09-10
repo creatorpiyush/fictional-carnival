@@ -1,15 +1,18 @@
 const route = require("express").Router();
 
-const bcrypt = require("bcryptjs");
-
-const User = require("../db/db");
+const { passport } = require("./passport_config");
 
 route.get("/", (req, res) => {
   res.render("login");
 });
 
-route.post("/", (req, res) => {
-  User.findOne({email})
-});
+route.post(
+  "/",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })
+);
 
 module.exports = route;
