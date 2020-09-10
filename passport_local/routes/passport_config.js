@@ -13,7 +13,9 @@ passport.use(
         const user = await User.findOne({ email });
         //   console.log(user);
         if (!user) {
-          return done(null, false);
+          return done(null, false, {
+            message: `No User with that email exists`,
+          });
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -21,7 +23,9 @@ passport.use(
         if (isPasswordValid) {
           return done(null, user);
         } else {
-          return done(null, false);
+          return done(null, false, {
+            message: `No User with that email exists`,
+          });
         }
       } catch (err) {
         done(err);

@@ -7,7 +7,7 @@ const User = require("../db/db");
 route.get("/", checkNotAuthenticate, (req, res) => {
   res.render("signup");
 });
- 
+
 route.post("/", checkNotAuthenticate, async (req, res) => {
   try {
     const hashedpassword = await bcrypt.hash(req.body.password, 10);
@@ -18,7 +18,9 @@ route.post("/", checkNotAuthenticate, async (req, res) => {
     });
     temp.save((err, result) => {
       if (err) {
-        return res.status(500).send("!!! User already Exist !!!");
+        return res.status(500).render("signup", { message: "!!! User already Exist !!!" });
+
+        // return res.render("!!! User already Exist !!!");
       } else {
         res.redirect("/login");
       }
