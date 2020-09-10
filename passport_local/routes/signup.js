@@ -4,11 +4,11 @@ const bcrypt = require("bcryptjs");
 
 const User = require("../db/db");
 
-route.get("/", (req, res) => {
+route.get("/", checkNotAuthenticate, (req, res) => {
   res.render("signup");
 });
-
-route.post("/", async (req, res) => {
+ 
+route.post("/", checkNotAuthenticate, async (req, res) => {
   try {
     const hashedpassword = await bcrypt.hash(req.body.password, 10);
     const temp = new User({
@@ -27,5 +27,12 @@ route.post("/", async (req, res) => {
     res.redirect("/signup");
   }
 });
+
+function checkNotAuthenticate(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/");
+  }
+  next();
+}
 
 module.exports = route;
