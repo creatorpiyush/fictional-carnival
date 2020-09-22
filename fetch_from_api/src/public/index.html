@@ -45,6 +45,8 @@
             const data = await res.json()
             // console.log(data.rates);
             const arrKeys = Object.keys(data.rates)
+            const rates = data.rates;
+            console.log(rates);
             // console.log(arrKeys);
             arrKeys.map(item => {
                 return html += `<option value="${item}">${item}</option>`
@@ -55,6 +57,21 @@
                 select[i].innerHTML = html
 
             }
+
+            function convert(i, j) {
+                input[i].value = input[j].value * rates[select[i].value] / rates[select[j].value]
+            }
+
+            // console.log(rates[select[1].value]);
+
+            input[0].addEventListener('keyup', () => convert(1, 0))
+
+            input[1].addEventListener('keyup', () => convert(0, 1))
+
+            select[0].addEventListener('change', () => convert(1, 0))
+
+            select[1].addEventListener('change', () => convert(0, 1))
+
         }
 
         currency()
