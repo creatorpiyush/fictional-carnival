@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="box">
+        <h1>Currency Converter</h1>
+
+        <div>
+            <input type="number">
+            <select>
+                <!-- <option value="currency">Currency</option> -->
+            </select>
+        </div>
+
+        <span>=</span>
+
+        <div>
+            <input type="number">
+            <select>
+                <!-- <option value="currency">Currency</option> -->
+            </select>
+        </div>
+
+    </div>
+
+
+    <script>
+        const select = document.querySelectorAll('select');
+        const input = document.querySelectorAll('input');
+        const API_URL = `https://api.exchangeratesapi.io/latest`;
+        let html = '';
+
+        async function currency() {
+            const res = await fetch(API_URL)
+            // console.log(res);
+            const data = await res.json()
+            // console.log(data.rates);
+            const arrKeys = Object.keys(data.rates)
+            // console.log(arrKeys);
+            arrKeys.map(item => {
+                return html += `<option value="${item}">${item}</option>`
+            })
+
+            // console.log(html);
+            for (let i = 0; i < select.length; i++) {
+                select[i].innerHTML = html
+
+            }
+        }
+
+        currency()
+    </script>
+</body>
+
+</html>
