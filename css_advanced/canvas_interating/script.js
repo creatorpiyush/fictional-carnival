@@ -66,6 +66,8 @@ window.addEventListener("mousemove", (event) => {
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+
+  init();
 });
 
 function Circle(x, y, dx, dy, r) {
@@ -117,19 +119,22 @@ function Circle(x, y, dx, dy, r) {
 
 let circleArray = [];
 
-for (let i = 0; i < 800; i++) {
-  let r = Math.random() * 3 + 1;
-
-  let x = Math.random() * (innerWidth - r * 2) + r;
-  let y = Math.random() * (innerHeight - r * 2) + r;
-
-  let dx = (Math.random() - 0.5) * 4;
-  let dy = (Math.random() - 0.5) * 4;
-
-  circleArray.push(new Circle(x, y, dx, dy, r));
-}
-
 // console.log(circleArray);
+
+function init() {
+  circleArray = [];
+  for (let i = 0; i < 800; i++) {
+    let r = Math.random() * 3 + 1;
+
+    let x = Math.random() * (innerWidth - r * 2) + r;
+    let y = Math.random() * (innerHeight - r * 2) + r;
+
+    let dx = (Math.random() - 0.5) * 4;
+    let dy = (Math.random() - 0.5) * 4;
+
+    circleArray.push(new Circle(x, y, dx, dy, r));
+  }
+}
 
 function animate() {
   requestAnimationFrame(animate);
@@ -140,5 +145,6 @@ function animate() {
     circleArray[i].update();
   }
 }
+init();
 
 animate();
