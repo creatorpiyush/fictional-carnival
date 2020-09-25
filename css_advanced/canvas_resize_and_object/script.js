@@ -10,22 +10,22 @@ let c = canvas.getContext("2d");
 
 // ? fillRect create rectangle on screen
 // c.fillRect(x, y, width, height);
-c.fillStyle = "red";
-c.fillRect(100, 100, 100, 100);
-c.fillStyle = "blue";
-c.fillRect(400, 100, 100, 100);
-c.fillStyle = "green";
-c.fillRect(300, 300, 100, 100);
+// c.fillStyle = "red";
+// c.fillRect(100, 100, 100, 100);
+// c.fillStyle = "blue";
+// c.fillRect(400, 100, 100, 100);
+// c.fillStyle = "green";
+// c.fillRect(300, 300, 100, 100);
 
 // ? Lines
-c.beginPath();
-// c.moveTo(x, y);
-c.moveTo(50, 300);
-// c.lineTo(x,y)
-c.lineTo(300, 100);
-c.lineTo(400, 300);
-c.strokeStyle = "blue";
-c.stroke();
+// c.beginPath();
+// // c.moveTo(x, y);
+// c.moveTo(50, 300);
+// // c.lineTo(x,y)
+// c.lineTo(300, 100);
+// c.lineTo(400, 300);
+// c.strokeStyle = "blue";
+// c.stroke();
 
 // ? Arc / Circle
 
@@ -35,11 +35,34 @@ c.stroke();
 // c.strokeStyle = "#fa34a3";
 // c.stroke();
 
-for (let i = 0; i < 3; i++) {
-  let x = Math.random() * window.innerWidth;
-  let y = Math.random() * window.innerHeight;
+// for (let i = 0; i < 100; i++) {
+//   let x = Math.random() * window.innerWidth;
+//   let y = Math.random() * window.innerHeight;
+//   c.beginPath();
+//   c.arc(x, y, 30, 0, Math.PI * 2, false);
+//   c.strokeStyle = "#fa34a3";
+//   c.stroke();
+// }
+
+// c.beginPath();
+// c.arc(200, 200, 30, 0, Math.PI * 2, false);
+// c.strokeStyle = "#fa34a3";
+// c.stroke();
+
+let x = 200;
+let y = 200;
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  c.clearRect(0, 0, innerWidth, innerHeight);
+
   c.beginPath();
   c.arc(x, y, 30, 0, Math.PI * 2, false);
   c.strokeStyle = "#fa34a3";
   c.stroke();
+
+  x++;
 }
+
+animate();
