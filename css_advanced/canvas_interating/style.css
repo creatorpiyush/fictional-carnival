@@ -1,0 +1,8 @@
+canvas {
+    border: 1px solid black;
+    /* adding width and height through js is a better option */
+}
+
+body {
+    margin: 0;
+}
