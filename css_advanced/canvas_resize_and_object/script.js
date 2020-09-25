@@ -49,33 +49,59 @@ let c = canvas.getContext("2d");
 // c.strokeStyle = "#fa34a3";
 // c.stroke();
 
-let x = Math.random() * innerWidth;
-let y = Math.random() * innerHeight;
-let r = 30;
+function Circle(x, y, dx, dy, r) {
+  this.x = x;
+  this.y = y;
+  this.dx = dx;
+  this.dy = dy;
+  this.r = r;
 
-let dx = (Math.random() - 0.5) * 4;
-let dy = (Math.random() - 0.5) * 4;
+  this.draw = function () {
+    c.beginPath();
+    c.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+    c.strokeStyle = "#fa34a3";
+    c.stroke();
+  };
+  this.update = function () {
+    if (this.x + this.r > innerWidth || this.x - this.r < 0) {
+      this.dx = -this.dx;
+    }
+
+    if (this.y + this.r > innerHeight || this.y - this.r < 0) {
+      this.dy = -this.dy;
+    }
+
+    this.x += this.dx;
+    this.y += this.dy;
+
+    this.draw();
+  };
+}
+
+let circleArray = [];
+
+for (let i = 0; i < 100; i++) {
+  let r = 30;
+
+  let x = Math.random() * (innerWidth - r * 2) + r;
+  let y = Math.random() * (innerHeight - r * 2) + r;
+
+  let dx = (Math.random() - 0.5) * 4;
+  let dy = (Math.random() - 0.5) * 4;
+
+  circleArray.push(new Circle(x, y, dx, dy, r));
+}
+
+console.log(circleArray);
 
 function animate() {
   requestAnimationFrame(animate);
 
   c.clearRect(0, 0, innerWidth, innerHeight);
 
-  c.beginPath();
-  c.arc(x, y, r, 0, Math.PI * 2, false);
-  c.strokeStyle = "#fa34a3";
-  c.stroke();
-
-  if (x + r > innerWidth || x - r < 0) {
-    dx = -dx;
+  for (let i = 0; i < circleArray.length; i++) {
+    circleArray[i].update();
   }
-
-  if (y + r > innerHeight || y - r < 0) {
-    dy = -dy;
-  }
-
-  x += dx;
-  y += dy;
 }
 
 animate();
