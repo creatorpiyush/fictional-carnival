@@ -54,11 +54,18 @@ let mouse = {
   y: undefined,
 };
 
+let colorArray = ["red", "blue", "green", "orange", "yellow"];
+
 window.addEventListener("mousemove", (event) => {
   // console.log(event);
   mouse.x = event.x;
   mouse.y = event.y;
-  console.log(mouse);
+  // console.log(mouse);
+});
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 });
 
 function Circle(x, y, dx, dy, r) {
@@ -67,12 +74,16 @@ function Circle(x, y, dx, dy, r) {
   this.dx = dx;
   this.dy = dy;
   this.r = r;
+  this.minRadius = r;
+  this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
 
   this.draw = function () {
     c.beginPath();
     c.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
-    c.strokeStyle = "#fa34a3";
-    c.stroke();
+    // c.strokeStyle = "#fa34a3";
+    // c.stroke();
+    c.fillStyle = this.color;
+    c.fill();
   };
   this.update = function () {
     if (this.x + this.r > innerWidth || this.x - this.r < 0) {
@@ -87,6 +98,18 @@ function Circle(x, y, dx, dy, r) {
     this.y += this.dy;
 
     // inner-activity
+    if (
+      mouse.x - this.x < 50 &&
+      mouse.x - this.x > -50 &&
+      mouse.y - this.y < 50 &&
+      mouse.y - this.y > -50
+    ) {
+      if (this.r < 40) {
+        this.r += 1;
+      }
+    } else if (this.r > 2) {
+      this.r -= 1;
+    }
 
     this.draw();
   };
@@ -94,8 +117,8 @@ function Circle(x, y, dx, dy, r) {
 
 let circleArray = [];
 
-for (let i = 0; i < 100; i++) {
-  let r = 30;
+for (let i = 0; i < 800; i++) {
+  let r = Math.random() * 3 + 1;
 
   let x = Math.random() * (innerWidth - r * 2) + r;
   let y = Math.random() * (innerHeight - r * 2) + r;
