@@ -49,8 +49,12 @@ let c = canvas.getContext("2d");
 // c.strokeStyle = "#fa34a3";
 // c.stroke();
 
-let x = 200;
-let y = 200;
+let x = Math.random() * innerWidth;
+let y = Math.random() * innerHeight;
+let r = 30;
+
+let dx = (Math.random() - 0.5) * 4;
+let dy = (Math.random() - 0.5) * 4;
 
 function animate() {
   requestAnimationFrame(animate);
@@ -58,11 +62,20 @@ function animate() {
   c.clearRect(0, 0, innerWidth, innerHeight);
 
   c.beginPath();
-  c.arc(x, y, 30, 0, Math.PI * 2, false);
+  c.arc(x, y, r, 0, Math.PI * 2, false);
   c.strokeStyle = "#fa34a3";
   c.stroke();
 
-  x++;
+  if (x + r > innerWidth || x - r < 0) {
+    dx = -dx;
+  }
+
+  if (y + r > innerHeight || y - r < 0) {
+    dy = -dy;
+  }
+
+  x += dx;
+  y += dy;
 }
 
 animate();
