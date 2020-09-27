@@ -6,3 +6,5 @@ canvas.height = window.innerWidth;
 const c = canvas.getContext("2d");
 
 // console.log(c);
+
+
