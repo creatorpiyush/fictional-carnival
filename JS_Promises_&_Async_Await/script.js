@@ -7,6 +7,10 @@ let p = new Promise((resolve, reject) => {
   }
 });
 
+/*
+ * Promises remove/omit callback function and variables/parameters
+ */
+
 p.then((message) => {
   console.log(message);
 }).catch((err) => {
