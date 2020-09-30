@@ -1,0 +1,72 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+<!-- include firebase database -->
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCyXM5jhDmygxgmNhEdjuhR9k9ctTgr3mk",
+    authDomain: "my-test-project-da832.firebaseapp.com",
+    databaseURL: "https://my-test-project-da832.firebaseio.com",
+    projectId: "my-test-project-da832",
+    storageBucket: "my-test-project-da832.appspot.com",
+    messagingSenderId: "312621342392",
+    appId: "1:312621342392:web:1974b98d8ca40c23c59e4d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  let myName = prompt('Enter your name: ')
+
+  function sendMessage() {
+
+    let message = document.getElementById('message').value
+
+    firebase.database().ref('messages').push().set({
+      "sender": myName,
+      "message": message,
+    })
+
+    return false
+  }
+
+  // listening for incoming message
+  firebase.database().ref("messages").on("child_added", (snapshot) => {
+    let html = "";
+    html += "<li id='message-" + snapshot.key + "'>";
+    // show Delete Button if Message is sent by me
+    if (snapshot.val().sender == myName) {
+      html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);' >"
+      html += "Delete"
+      html += "</button>"
+    }
+    html += snapshot.val().sender + ": " + snapshot.val().message
+    html += "</li>"
+
+    document.getElementById("messages").innerHTML += html
+  })
+
+  function deleteMessage(self) {
+    let messageId = self.getAttribute("data-id")
+
+    firebase.database().ref("messages").child(messageId).remove()
+  }
+
+  firebase.database().ref("messages").on("child_removed", (snapshot) => {
+    document.getElementById("message-" + snapshot.key).innerHTML = "This Message has been deleted"
+  })
+</script>
+
+<form onsubmit="return sendMessage();" action="/" method="GET">
+  <input type="text" name="message" id="message" placeholder="Enter Message" autocomplete="off">
+
+  <input type="submit" value="Submit">
+</form>
+
+<!-- Creating a List -->
+<ul id="messages"></ul>
