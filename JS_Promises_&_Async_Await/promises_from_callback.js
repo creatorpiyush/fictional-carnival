@@ -45,10 +45,16 @@ const Three = new Promise((resolve, reject) => {
   resolve("Three");
 });
 
-Promise.all([One, Two, Three])
-  .then((message) => {
-    console.log(message);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+Promise.all([One, Two, Three]).then((message) => {
+  console.log(message);
+});
+
+/*
+ *
+ * Promise.race() for output when first is done
+ *
+ */
+
+Promise.race([One, Two, Three]).then((message) => {
+  console.log(message);
+});
