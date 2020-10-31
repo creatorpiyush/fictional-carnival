@@ -9,9 +9,15 @@ app.use(express.json());
 
 const indexroute = require("./routes/index");
 const signuproute = require("./routes/signup");
+const loginroute = require("./routes/login");
+
+const { passport } = require("./routes/passport_config");
+
+app.use(passport.initialize());
 
 app.use("/", indexroute);
 app.use("/signup", signuproute);
+app.use("/login", loginroute);
 
 const port = process.env.PORT || 5555;
 

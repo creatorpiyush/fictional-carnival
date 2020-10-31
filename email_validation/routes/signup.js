@@ -8,7 +8,7 @@ route.get("/", (req, res) => {
   res.send("signup");
 });
 
-route.post("/", async (req, res) => {
+route.post("/", checkNotAuthenticate, async (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
@@ -37,5 +37,12 @@ route.post("/", async (req, res) => {
     }
   }
 });
+
+function checkNotAuthenticate(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/");
+  }
+  next();
+}
 
 module.exports = route;
