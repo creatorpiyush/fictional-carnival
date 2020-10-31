@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const User = require("./user");
+
 const db_url = `mongodb://localhost:27017/usertest`;
 
 mongoose.connect(
@@ -17,3 +19,5 @@ mongoose.connect(
     }
   }
 );
+
+module.exports = User;
