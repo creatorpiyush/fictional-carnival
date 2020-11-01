@@ -30,13 +30,13 @@ route.post("/", checkNotAuthenticate, async (req, res) => {
 
       temp.save((err, result) => {
         if (err) {
-          // return res.render("User already Exists");
           req.flash("message", "User already Exists");
           res.redirect("/signup");
           return;
         } else {
-          res.send(`Confirmation Mail sent to ${result.email} `);
           sendConfirmationEmail(result);
+          req.flash("message", result.email);
+          res.redirect("/confirmation");
         }
       });
     } catch (error) {
