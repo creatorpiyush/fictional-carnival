@@ -4,9 +4,7 @@ let userid = "";
 
 route.get("/:id", (req, res) => {
   userid = req.params.id;
-  res.send(userid);
+  res.redirect(`/login`);
 });
-
-
 
 module.exports = route;

@@ -2,7 +2,7 @@ const route = require("express").Router();
 
 const { passport } = require("./passport_config");
 
-route.get("/", (req, res) => {
+route.get("/", checkNotAuthenticate, (req, res) => {
   res.render("login");
 });
 

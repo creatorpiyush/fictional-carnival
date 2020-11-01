@@ -7,16 +7,15 @@ const port = process.env.PORT || 5555;
 
 const transport = nodemailer.createTransport(
   nodemailerSendgrid({
-    apiKey: key.SENDGRID.SENDGRID_API_KEY,
+    apiKey: process.env.SENDGRID_API_KEY,
   })
 );
 
 function sendConfirmationEmail(user) {
   const url = `http://localhost:${port}/confirmation/${user._id}`;
-  console.log(url);
   transport
     .sendMail({
-      from: "piyushanand.1221@gmail.com",
+      from: "creatorpiyush24@gmail.com",
       to: `${user.username} < ${user.email}>`,
       subject: "Confirmation Email",
       html: `<h1>Confirmation Email!</h1>

@@ -6,7 +6,7 @@ const User = require("../model.js");
 
 const { sendConfirmationEmail } = require("./confirmemail");
 
-route.get("/", (req, res) => {
+route.get("/", checkNotAuthenticate, (req, res) => {
   res.render("signup");
 });
 
@@ -37,7 +37,7 @@ route.post("/", checkNotAuthenticate, async (req, res) => {
         }
       });
     } catch (error) {
-      return res.send(err);
+      return res.redirect("/signup");
     }
   }
 });
