@@ -2,7 +2,11 @@ const route = require("express").Router();
 
 const { passport } = require("./passport_config");
 
-route.get(
+route.get("/", (req, res) => {
+  res.render("login");
+});
+
+route.post(
   "/",
   checkNotAuthenticate,
   passport.authenticate("local", {

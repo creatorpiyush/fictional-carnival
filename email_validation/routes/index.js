@@ -1,7 +1,7 @@
 const route = require("express").Router();
 
 route.get("/", (req, res) => {
-  res.send(`Hi`);
+  res.render(`index`);
 });
 
 module.exports = route;
