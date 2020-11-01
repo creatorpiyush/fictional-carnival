@@ -4,6 +4,8 @@ const bcrypt = require("bcryptjs");
 
 const User = require("../model.js");
 
+const { sendConfirmationEmail } = require("./confirmemail");
+
 route.get("/", (req, res) => {
   res.send("signup");
 });
@@ -29,8 +31,10 @@ route.post("/", checkNotAuthenticate, async (req, res) => {
       temp.save((err, result) => {
         if (err) {
           return res.send("User already Exists");
+        } else {
+          res.send(`Confirmation Mail sent to ${result.email} `);
+          sendConfirmationEmail(result);
         }
-        return res.redirect("/");
       });
     } catch (error) {
       return res.send(err);
