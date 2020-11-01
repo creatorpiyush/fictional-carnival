@@ -9,13 +9,15 @@
 
 <body>
 
-    <body>
+    {{message}}
 
-        {{username}}
-        <br>
-        {{email}}
+    {{username}}
+    <br>
+    {{email}}
 
-    </body>
+    <form action="/logout?_method=DELETE" method="post">
+        <input type="submit" value="Logout">
+    </form>
 
 </html>
 

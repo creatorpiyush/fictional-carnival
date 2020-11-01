@@ -7,7 +7,7 @@ const User = require("../model.js");
 const { sendConfirmationEmail } = require("./confirmemail");
 
 route.get("/", checkNotAuthenticate, (req, res) => {
-  res.render("signup");
+  res.render("signup", { message: req.flash("message") });
 });
 
 route.post("/", checkNotAuthenticate, async (req, res) => {
@@ -30,14 +30,19 @@ route.post("/", checkNotAuthenticate, async (req, res) => {
 
       temp.save((err, result) => {
         if (err) {
-          return res.send("User already Exists");
+          // return res.render("User already Exists");
+          req.flash("message", "User already Exists");
+          res.redirect("/signup");
+          return;
         } else {
           res.send(`Confirmation Mail sent to ${result.email} `);
           sendConfirmationEmail(result);
         }
       });
     } catch (error) {
-      return res.redirect("/signup");
+      req.flash("message", error);
+      res.redirect("/signup");
+      return;
     }
   }
 });

@@ -4,7 +4,7 @@ const User = require("../model.js");
 
 route.get("/", checkAuthenticate, (req, res) => {
   User.findById(req.session.passport.user).then((user) => {
-    res.send({ username: user.username, email: user.email });
+    res.render("index", { username: user.username, email: user.email });
   });
 });
 
