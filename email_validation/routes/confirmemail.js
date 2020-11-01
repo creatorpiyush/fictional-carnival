@@ -1,7 +1,6 @@
 const nodemailer = require("nodemailer");
 const nodemailerSendgrid = require("nodemailer-sendgrid");
 
-const key = require("../keys/keys");
 
 const port = process.env.PORT || 5555;
 
