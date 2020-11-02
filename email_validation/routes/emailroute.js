@@ -11,7 +11,7 @@ route.get("/", (req, res) => {
 route.get("/:id", (req, res) => {
   userid = req.params.id;
 
-  if (User.findById(req.params.id) === undefined) {
+  if (User.findById(req.params.id) !== undefined) {
     req.flash("message", "Your Email is Verified !!! Please Login Here!");
     res.redirect(`/login`);
   } else {

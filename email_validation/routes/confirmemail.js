@@ -1,7 +1,6 @@
 const nodemailer = require("nodemailer");
 const nodemailerSendgrid = require("nodemailer-sendgrid");
 
-
 const port = process.env.PORT || 5555;
 
 const transport = nodemailer.createTransport(
@@ -23,6 +22,7 @@ function sendConfirmationEmail(user) {
     })
     .then(() => {
       console.log("Email sent");
+      return "Email sent";
     })
     .catch((err) => {
       console.log("Email not sent", err);
