@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data to Excel Sheets</title>
+
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+
+</head>
+
+<body>
+
+    <div class="px-5 pt-5">
+        <form method="POST" name="google-sheet-test">
+            <div class=" form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="Name" id="name" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" inputmode="email" class="form-control" name="Email" id="email"
+                    placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" inputmode="tel" class="form-control" name="Phone" id="phone"
+                    placeholder="Enter Phone Number">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Message</label>
+                <textarea class="form-control" name="Message" id="message" placeholder="Enter Your Message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Once form is created go to google sheets form a sheets with the above "name" 
+        then got to tools->Script editor
+        In Script editor delete whatever written
+    -->
+    <!-- * Now Just Copy Paste the following code to that -->
+    <!-- todo: 
+
+        var sheetName = 'Sheet1'
+        var scriptProp = PropertiesService.getScriptProperties()
+
+        function intialSetup () {
+            var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+            scriptProp.setProperty('key', activeSpreadsheet.getId())
+        }
+
+        function doPost (e) {
+            var lock = LockService.getScriptLock()
+            lock.tryLock(10000)
+
+            try {
+                var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+                var sheet = doc.getSheetByName(sheetName)
+
+                var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+                var nextRow = sheet.getLastRow() + 1
+
+                var newRow = headers.map(function(header) {
+                return header === 'timestamp' ? new Date() : e.parameter[header]
+                })
+
+                sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+
+                return ContentService
+                .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+                .setMimeType(ContentService.MimeType.JSON)
+            }
+
+            catch (e) {
+                return ContentService
+                .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+                .setMimeType(ContentService.MimeType.JSON)
+            }
+
+            finally {
+                lock.releaseLock()
+            }
+        }
+     -->
+
+    <!-- Now Save the code by File->Save and give it any Name but google-sheets name is preferred -->
+
+    <!-- Now Go to Run->Run Function -> intialSetup -->
+    <!-- Review the Permission -->
+    <!-- Click on Advance then Go to form_data_to_google_sheets (unsafe) and then Allow -->
+
+    <!-- Now go to Publish->Deploy as web app -->
+    <!-- You can change any setting if you want to but Who has access to this app should be "Anyone, even anonymous" -->
+    <!-- Then click on Deploy -->
+
+    <!-- Copy that Current web app URL to clipboard -->
+
+    <!-- now in the bottom of that <body> create a <script> -->
+    <!-- todo:
+        <script>
+            const scriptURL ='Current web app URL'
+            const form = document.forms['google-sheet']
+
+            form.addEventListener('submit', e => {
+                e.preventDefault()
+                fetch(scriptURL, {
+                        method: 'POST',
+                        body: new FormData(form)
+                    })
+                    .then(response => alert("Thanks for Contacting ..! I Will Contact You Soon..."))
+                    .catch(error => console.error('Error!', error.message))
+            })
+        </script>
+    -->
+
+    <!-- Here, the method of the form should be POST and can be any name but similar to (document.forms['xxx']) 'xxx' -->
+
+    <script>
+        const scriptURL =
+            'https://script.google.com/macros/s/AKfycbyHiuUWYzbX0Oo8CrX7sBLFQ0hUIl7wEoZee_pbAnqWxUZshdiI/exec'
+        const form = document.forms['google-sheet-test']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => alert("Thanks for Contacting ..! I Will Contact You Soon..."))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
+
+</body>
+
+</html>
