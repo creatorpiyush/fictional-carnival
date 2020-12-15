@@ -27,9 +27,8 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#" class="btn-floating indigo darken-4 z-depth-0">
-                    <i class="material-icons">notifications</i>
-                </a></li>
-                
+                        <i class="material-icons">notifications</i>
+                    </a></li>
             </ul>
         </div>
     </nav>
@@ -40,6 +39,18 @@
         <li><a href="#">Contact</a></li>
     </ul>
 
+    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#!">one</a></li>
+        <li><a href="#!">two</a></li>
+        <li class="divider" tabindex="-1"></li>
+        <li><a href="#!">three</a></li>
+        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+    </ul>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <!-- Compiled and minified JavaScript -->
@@ -47,7 +58,8 @@
 
     <script>
         $(document).ready(function () {
-            $('.sidenav').sidenav()
+            $('.sidenav').sidenav();
+            $('.dropdown-trigger').dropdown();
         })
     </script>
 
