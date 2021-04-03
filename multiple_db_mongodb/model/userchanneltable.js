@@ -9,7 +9,7 @@ const userChannelSchema = new Schema({
     },
     content: {
         type: Schema.Types.ObjectId,
-        ref: "UserContents",
+        ref: "userContent",
     },
 });
 

@@ -24,8 +24,24 @@ route.post("/", (req, res) => {
     });
 });
 
+route.post("/:username/createChannel", async(req, res) => {
+    await db.UserChannel.create({
+            ChannelName: req.body.ChannelName,
+        })
+        .then((userchannel) => {
+            return db.User.findOneAndUpdate({ username: req.params.username }, { userChannel: userchannel._id });
+        })
+        .then((user) => {
+            res.json(user);
+        })
+        .catch((err) => {
+            res.json(err);
+        });
+});
+
 route.get("/:username", (req, res) => {
     db.User.findOne({ username: req.params.username })
+        .populate("userChannel")
         .then((user) => {
             res.json(user);
         })

@@ -15,7 +15,7 @@ const userContentSchema = new Schema({
     },
     comments: {
         type: Schema.Types.ObjectId,
-        ref: "Comments",
+        ref: "comment",
     },
 });
 
