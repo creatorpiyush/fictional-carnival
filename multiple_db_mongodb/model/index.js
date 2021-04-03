@@ -18,6 +18,6 @@ mongoose.connect(
 module.exports = {
     User: require("./usertable"),
     UserChannel: require("./userchanneltable"),
-    Comment: require("./commentstable"),
     UserContent: require("./userContent"),
+    Comment: require("./commentstable"),
 };

@@ -9,6 +9,7 @@ const userContentSchema = new Schema({
     },
     content_title: {
         type: String,
+        required: true,
     },
     likes: {
         type: Number,
