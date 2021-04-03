@@ -14,10 +14,10 @@ const userContentSchema = new Schema({
     likes: {
         type: Number,
     },
-    comments: {
+    comments: [{
         type: Schema.Types.ObjectId,
         ref: "comment",
-    },
+    }, ],
 });
 
 const UserContents = mongoose.model("userContent", userContentSchema);

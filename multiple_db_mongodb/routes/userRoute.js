@@ -45,10 +45,9 @@ route.post("/:userChannel/addContent", async(req, res) => {
             content_title: req.body.content_title,
         })
         .then((usercontent) => {
-            return db.UserChannel.findOneAndUpdate({ ChannelName: req.params.userChannel }, { content: usercontent._id });
+            return db.UserChannel.findOneAndUpdate({ ChannelName: req.params.userChannel }, { $push: { content: usercontent._id } });
         })
         .then((user) => {
-            console.log(user);
             res.json(user);
         })
         .catch((err) => {
@@ -62,6 +61,9 @@ route.get("/:username", (req, res) => {
             path: "userChannel",
             populate: {
                 path: "content",
+                populate: {
+                    path: "comments",
+                },
             },
         })
         .then((user) => {

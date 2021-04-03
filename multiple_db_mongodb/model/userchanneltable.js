@@ -7,10 +7,10 @@ const userChannelSchema = new Schema({
         type: String,
         unique: true,
     },
-    content: {
+    content: [{
         type: Schema.Types.ObjectId,
         ref: "userContent",
-    },
+    }],
 });
 
 const UserChannels = mongoose.model("userChannel", userChannelSchema);

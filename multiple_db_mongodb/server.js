@@ -10,6 +10,8 @@ app.use("/", require("./routes/homeRoute"));
 
 app.use("/user", require("./routes/userRoute"));
 
+app.use("/content", require("./routes/contentRoute"));
+
 // adding port
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
