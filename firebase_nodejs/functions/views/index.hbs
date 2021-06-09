@@ -1,0 +1,30 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rendering</title>
+
+  </head>
+
+  <body>
+
+    <body>
+      <h1>ToDo: Enter your task</h1>
+
+      <form action="/todo" method="POST">
+        <input name="todo" placeholder="Enter your task" />
+        <input type="submit" value="Submit" />
+      </form>
+
+      <ul>
+        {{#each todos as |todo|}}
+          <li>{{todo.task}}</li>
+        {{/each}}
+      </ul>
+
+    </body>
+
+  </body>
+
+</html>
