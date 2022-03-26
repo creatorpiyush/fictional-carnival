@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +19,8 @@
     "express-validator": "^6.6.0",
     "mongoose": "^5.9.21",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.4"
-  }
+    "nodemon": "^2.0.4",
+    "@snyk/protect": "latest"
+  },
+  "snyk": true
 }
