@@ -4,14 +4,18 @@
   "description": "> It is used to create / convert javascript classes & objects to SQL commands (table form)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "sequelize": "^6.2.4",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.0",
+    "@snyk/protect": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "snyk": true
 }
