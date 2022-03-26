@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "author": "Piyush Anand",
   "license": "ISC",
@@ -13,6 +15,8 @@
     "express": "^4.17.1",
     "express-validator": "^6.6.0",
     "mongoose": "^5.9.21",
-    "nodemon": "^2.0.4"
-  }
+    "nodemon": "^2.0.4",
+    "@snyk/protect": "latest"
+  },
+  "snyk": true
 }
